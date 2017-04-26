@@ -1,4 +1,6 @@
 defmodule BadLuckChuck.Pile do
+  @moduledoc """
+  """
   alias BadLuckChuck.Card
 
   def sort(cards, :rank) when is_list(cards) do
@@ -18,6 +20,22 @@ defmodule BadLuckChuck.Pile do
     cards
     |> Enum.reduce(0, fn (card, acc) -> acc + Card.points(card) end)
   end
+
+  def top(cards), do: List.first(cards)
+  def top(cards, :suit), do: cards |> top() |> Card.suit()
+  def top(cards, :rank), do: cards |> top() |> Card.rank()
+
+  def same_suit?(cards) when is_list(cards) do
+    suit = top(cards, :suit)
+    Enum.all?(cards, fn (card) -> Card.suit(card) == suit end)
+  end
+
+  def same_rank?(cards) when is_list(cards) do
+    rank = top(cards, :rank)
+    Enum.all?(cards, fn (card) -> Card.rank(card) == rank end)
+  end
+
+
 
   defp compare_ranks(c1, c2) do
      Card.rank(c1) < Card.rank(c2)

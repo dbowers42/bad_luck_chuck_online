@@ -1,18 +1,17 @@
 defmodule BadLuckChuck do
   @moduledoc """
-  Documentation for BadLuckChuck.
   """
+  alias BadLuckChuck.Pile
+  alias BadLuckChuck.Deck
+  def start(_type, _args) do
+    cards = [:c1, :h4, :h3, :c2]
 
-  @doc """
-  Hello world.
+    Deck.same_rank
 
-  ## Examples
+    cards
+    |> Pile.points()
+    |> IO.inspect
 
-      iex> BadLuckChuck.hello
-      :world
-
-  """
-  def hello do
-    :world
+    {:ok, self()}
   end
 end

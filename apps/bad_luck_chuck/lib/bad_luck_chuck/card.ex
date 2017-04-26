@@ -1,4 +1,7 @@
 defmodule BadLuckChuck.Card do
+  @moduledoc """
+  """
+
   def rank(card) when is_atom(card) do
     card
     |> Atom.to_string()
