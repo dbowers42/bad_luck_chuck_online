@@ -2,14 +2,23 @@ defmodule BadLuckChuck.Sequencer do
   @moduledoc """
   """
   alias BadLuckChuck.Card
-  import BadLuckChuck.Pile, only: [sort: 2, same_suit?: 1, top: 2]
+  import BadLuckChuck.Pile, only: [sort: 2, top: 2]
 
   def sequential?([]), do: true
 
   def sequential?(cards) do
      cards
      |> split_runs()
-     |> Enum.any?(&continuous?(&1))
+     |> Enum.map(fn (run) -> Task.async(fn -> continuous?(run) end) end)
+     |> Task.yield_many()
+     |> Enum.map(&extract_continuous_result/1)
+     |> Enum.any?(&(&1))
+  end
+
+  defp extract_continuous_result(data) do
+    {_, {:ok, result}} = data
+
+    result
   end
 
   defp continuous?(cards) do
