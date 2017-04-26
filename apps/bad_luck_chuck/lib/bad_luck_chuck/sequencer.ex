@@ -4,28 +4,35 @@ defmodule BadLuckChuck.Sequencer do
   alias BadLuckChuck.Card
   import BadLuckChuck.Pile, only: [sort: 2, same_suit?: 1, top: 2]
 
-  defp sequential?([]), do: true
+  def sequential?([]), do: true
 
-  defp sequential?(cards) do
-    [head | tail] = sort(:rank)
-
-    cond do
-      (Enum.count(cards) == 1) -> true
-      top(cards, :rank) + 1 == top(tail, :rank) && sequential?(tail) -> true
-      true -> false
-    end || sequential_high_ace?(cards)
+  def sequential?(cards) do
+     cards
+     |> split_runs()
+     |> Enum.any?(&continuous?(&1))
   end
 
-  defp sequential_high_ace?(cards) do
-   cards
-   |> Enum.map(&low_to_high/1)
-   |> sort(:rank)
-   |> sequential?
- end
+  defp continuous?(cards) do
+    length(cards) == 1 || (top(cards, :rank) + 1 == top(tl(cards), :rank) && continuous?(tl(cards)))
+  end
+
+  defp split_runs(cards) do
+    [
+      sort(Enum.map(cards, &low_to_high/1), :rank),
+      sort(Enum.map(cards, &high_to_low/1), :rank)
+    ]
+  end
 
   defp low_to_high(card) when is_atom(card) do
     cond do
       Card.rank(card) == 1 -> create_card(14, card)
+      true -> card
+    end
+  end
+
+  defp high_to_low(card) when is_atom(card) do
+    cond do
+      Card.rank(card) == 14 -> create_card(1, card)
       true -> card
     end
   end
@@ -37,5 +44,6 @@ defmodule BadLuckChuck.Sequencer do
           "Hearts" -> "h"
           "Spades" -> "s"
      end <> Integer.to_string(rank)
+     |> String.to_atom()
   end
 end
