@@ -4,14 +4,9 @@ defmodule BadLuckChuck do
   alias BadLuckChuck.Pile
   alias BadLuckChuck.Deck
   def start(_type, _args) do
-    cards = [:c1, :h4, :h3, :c2]
+    cards = [:c1, :c2, :h3]
 
-    Deck.same_rank
-
-    cards
-    |> Pile.points()
-    |> IO.inspect
-
+    Deck.run?(cards) |> IO.inspect
     {:ok, self()}
   end
 end

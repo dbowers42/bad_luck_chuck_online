@@ -14,13 +14,12 @@ defmodule BadLuckChuck.Deck do
     minimum_cards?(cards) && same_rank?(cards)
   end
 
+
+  # A run must have at least 3 cards
+  # The cards must have the same suit
+  # Card ranks must be sequential
   def run?(cards) do
-    cond do
-      !minimum_cards?(cards) -> false       # A run must have at least 3 cards
-      !same_suit?(cards) -> false           # The cards must have the same suit
-      Sequencer.sequential?(cards) -> true  # Card ranks must be sequential
-      true -> false                         # These cards are not a run
-    end
+    minimum_cards?(cards) && same_suit?(cards) && Sequencer.sequential?(cards)
   end
 
   def cut(cards, divider) when is_list(cards) and is_atom(divider) do
