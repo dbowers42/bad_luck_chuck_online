@@ -27,7 +27,7 @@
         <td>Ace of Spades</td>
     </tr>
 
-    <tr>
+   <tr>
         <td>:c2</td>
         <td>2 of Clubs</td>
         <td>:d2</td>
@@ -37,7 +37,7 @@
         <td>:s2</td>
         <td>2 of Spades</td>
     </tr>
-    <tr>
+    <!-- <tr>
         <td>:c3</td>
         <td>3 of Clubs</td>
         <td>:d3</td>
@@ -186,6 +186,6 @@
         <td>King of Hearts</td>
         <td>:kj</td>
         <td>King of Spades</td>
-    </tr>
+    </tr> -->
     </tbody>
 </table>
