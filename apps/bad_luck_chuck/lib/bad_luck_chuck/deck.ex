@@ -22,4 +22,10 @@ defmodule BadLuckChuck.Deck do
       true -> false                         # These cards are not a run
     end
   end
+
+  def cut(cards, divider) when is_list(cards) and is_atom(divider) do
+     index = Enum.find_index(cards, &(&1 == divider)) + 1
+
+     Enum.split_while(cards, fn card -> card != Enum.at(cards, index) end)
+  end
 end
