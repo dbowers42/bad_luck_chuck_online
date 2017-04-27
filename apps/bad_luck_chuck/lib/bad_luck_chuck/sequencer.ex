@@ -10,15 +10,8 @@ defmodule BadLuckChuck.Sequencer do
      cards
      |> split_runs()
      |> Enum.map(fn (run) -> Task.async(fn -> continuous?(run) end) end)
-     |> Task.yield_many()
-     |> Enum.map(&extract_continuous_result/1)
-     |> Enum.any?(&(&1))
-  end
-
-  defp extract_continuous_result(data) do
-    {_, {:ok, result}} = data
-
-    result
+     |> Enum.map(fn (task) -> Task.await(task, 1000) end)
+     |> Enum.any?()
   end
 
   defp continuous?(cards) do
