@@ -1,16 +1,10 @@
 defmodule BadLuckChuck.Card do
   @moduledoc """
     This module is a set of functions that are used to manipulate atoms that represent playing cards.
+
     An atom represents a playing card by combining the first letter of the suit name with the rank of
     the card. Aces are a special case because they have more than one representation because they can
     be considered a high ranking or low ranking card. See below:
-
-    <table>
-      <tr>
-        <th>Ace</th>
-        <th>2</th>
-      </tr>
-    </table>
   """
 
   def rank(card) when is_atom(card) do
