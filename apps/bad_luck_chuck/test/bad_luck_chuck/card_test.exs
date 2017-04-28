@@ -18,16 +18,44 @@ defmodule CardTest do
     :s2, :s3, :s4, :s5, :s6, :s7, :s8, :s9
   ]
 
+  @expected_display_names %{
+    c1: "Ace of Clubs",
+    c2: "2 of Clubs",
+    c11: "Jack of Clubs",
+    c12: "Queen of Clubs",
+    c13: "King of Clubs",
+    c14: "Ace of Clubs",
+
+    d1: "Ace of Diamonds",
+    d2: "2 of Diamonds",
+    d11: "Jack of Diamonds",
+    d12: "Queen of Diamonds",
+    d13: "King of Diamonds",
+    d14: "Ace of Diamonds",
+
+    h1: "Ace of Hearts",
+    h2: "2 of Hearts",
+    h11: "Jack of Hearts",
+    h12: "Queen of Hearts",
+    h13: "King of Hearts",
+    h14: "Ace of Hearts",
+
+    s1: "Ace of Spades",
+    s2: "2 of Spades",
+    s11: "Jack of Spades",
+    s12: "Queen of Spades",
+    s13: "King of Spades",
+    s14: "Ace of Spades"
+  }
+
   alias BadLuckChuck.Card
 
-  describe "BadLuckChuck.Card.rank/1" do
-  end
-
-  describe "BadLuckChuck.Card.suit/1" do
-  end
-
   describe "BadLuckChuck.Card.display_name/1" do
-
+    test "displays the correct display name for a card" do
+      @expected_display_names |> Enum.each(fn {card, name} ->
+        assert Card.display_name(card) == name
+      end)
+    end
   end
 
   describe "BadLuckChuck.Card.points/1" do
