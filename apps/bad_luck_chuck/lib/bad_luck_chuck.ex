@@ -1,9 +1,5 @@
 defmodule BadLuckChuck do
-
-  @moduledoc """
-  """
-  alias BadLuckChuck.Deck
-
+  def start(_type, _args) do
     {:ok, self()}
   end
 end
