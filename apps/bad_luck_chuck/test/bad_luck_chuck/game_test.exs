@@ -1,5 +1,5 @@
 defmodule GameTest do
-  use ExUnit.Casee, async: true
+  use ExUnit.Case, async: true
   doctest BadLuckChuck.Game
 
   test "the truth" do

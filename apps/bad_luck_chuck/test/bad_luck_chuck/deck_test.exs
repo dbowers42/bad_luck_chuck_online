@@ -1,5 +1,5 @@
 defmodule DeckTest do
-  use ExUnit.Casee, async: true
+  use ExUnit.Case, async: true
   doctest BadLuckChuck.Deck
 
   test "the truth" do

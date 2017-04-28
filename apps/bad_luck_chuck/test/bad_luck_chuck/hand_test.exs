@@ -1,5 +1,5 @@
 defmodule HandTest do
-  use ExUnit.Casee, async: true
+  use ExUnit.Case, async: true
   doctest BadLuckChuck.Hand
 
   test "the truth" do

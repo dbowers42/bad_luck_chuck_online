@@ -1,5 +1,5 @@
 defmodule BoardTest do
-  use ExUnit.Casee, async: true
+  use ExUnit.Case, async: true
   doctest BadLuckChuck.Board
 
   test "the truth" do
