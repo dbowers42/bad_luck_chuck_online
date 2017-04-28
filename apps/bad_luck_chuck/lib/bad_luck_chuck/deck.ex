@@ -14,7 +14,6 @@ defmodule BadLuckChuck.Deck do
     minimum_cards?(cards) && same_rank?(cards)
   end
 
-
   # A run must have at least 3 cards
   # The cards must have the same suit
   # Card ranks must be sequential
@@ -26,5 +25,10 @@ defmodule BadLuckChuck.Deck do
      index = Enum.find_index(cards, &(&1 == divider)) + 1
 
      Enum.split_while(cards, fn card -> card != Enum.at(cards, index) end)
+  end
+
+  def points(cards) when is_list(cards) do
+    cards
+    |> Enum.reduce(0, fn (card, acc) -> acc + Card.points(card) end)
   end
 end
