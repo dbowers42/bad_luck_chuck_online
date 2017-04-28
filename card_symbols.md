@@ -157,35 +157,5 @@
         <td>:s14</td>
         <td>Ace of Spades</td>
     </tr>
-    <tr>
-        <td>:cj</td>
-        <td>Jack of Clubs</td>
-        <td>:dj</td>
-        <td>Jack of Diamonds</td>
-        <td>:hj</td>
-        <td>Jack of Hearts</td>
-        <td>:sj</td>
-        <td>Jack of Spades</td>
-    </tr>
-    <tr>
-        <td>:cq</td>
-        <td>Queen of Clubs</td>
-        <td>:dq</td>
-        <td>Qieem of Diamonds</td>
-        <td>:hq</td>
-        <td>Queen of Hearts</td>
-        <td>:sq</td>
-        <td>Queen of Spades</td>
-    </tr>
-    <tr>
-        <td>:kj</td>
-        <td>King of Clubs</td>
-        <td>:kj</td>
-        <td>King of Diamonds</td>
-        <td>:kj</td>
-        <td>King of Hearts</td>
-        <td>:kj</td>
-        <td>King of Spades</td>
-    </tr>
     </tbody>
 </table>
