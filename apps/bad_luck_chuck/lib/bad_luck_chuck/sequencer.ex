@@ -1,9 +1,27 @@
 defmodule BadLuckChuck.Sequencer do
   @moduledoc """
+     The BadLuckChuck.Sequencer provides functionality to determine if a
+     collection of cards can be arranged sequentially by rank without gaps.
   """
   alias BadLuckChuck.Card
   import BadLuckChuck.Pile, only: [sort: 2, top: 2]
 
+  @doc """
+    Returns true only if a collection of cards can be arranged sequentially
+    by rank without gaps.
+
+      iex> BadLuckChuck.Sequencer.sequential?([:c1, :c2, :c3])
+      true
+
+      iex> BadLuckChuck.Sequencer.sequential?([:c1, :s2, :h3])
+      true
+
+      iex> BadLuckChuck.Sequencer.sequential?([:c1, :c12, :c13])
+      true
+
+      iex> BadLuckChuck.Sequencer.sequential?([:c1, :c3, :c4])
+      false
+  """
   def sequential?([]), do: true
 
   def sequential?(cards) do
