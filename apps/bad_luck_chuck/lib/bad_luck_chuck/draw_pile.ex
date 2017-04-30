@@ -23,6 +23,7 @@ defmodule BadLuckChuck.DrawPile do
   end
 
   defp populate_cards do
+    # two full decks of cards are required for playing this game
     for deck <- 1..2, suit <- ["c", "d", "h", "s"], rank <- 1..13 do
       String.to_atom(suit <> Integer.to_string(rank))
     end
