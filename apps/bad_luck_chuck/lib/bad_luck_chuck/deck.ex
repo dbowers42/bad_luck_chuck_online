@@ -1,4 +1,10 @@
 defmodule BadLuckChuck.Deck do
+  use GenServer
+
+  def start_link(deck_id) when is_atom(deck_id) do
+    GenServer.start_link(__MODULE__, %{}, name: deck_id)
+  end
+
   @moduledoc """
     The BadLuckChuck.Deck module manages a collection of cards as deck
     that has been put into play.
@@ -88,5 +94,21 @@ defmodule BadLuckChuck.Deck do
   """
   def points(cards) when is_list(cards) do
     BadLuckChuck.Pile.points(cards)
+  end
+
+  def cards(deck) do
+    GenServer.call(deck, :cards)
+  end
+
+  def add_card(deck, card) do
+    GenServer.cast(deck, {:add_card, card})
+  end
+
+  def handle_call(:cards, _from, state) do
+    {:reply, state.cards, state}
+  end
+
+  def handle_cast({:add_card, card}, state) do
+    {:noreply, %{state | cards: [card| state.cards]}}
   end
 end
