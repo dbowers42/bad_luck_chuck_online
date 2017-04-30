@@ -1,11 +1,13 @@
 defmodule BadLuckChuck do
-  alias BadLuckChuck.Pile
+  alias BadLuckChuck.Game
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
 
-    cards = [:c3, :c1, :h1, :c2, :h3, :h2]
+    children = [
+      worker(Game, [:game_1])
+    ]
 
-    Pile.sort(cards, :suit) |> IO.inspect
-    {:ok, self()}
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
