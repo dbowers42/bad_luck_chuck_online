@@ -1,8 +1,8 @@
 defmodule BadLuckChuck.Deck do
   use GenServer
 
-  def start_link(deck_id) when is_atom(deck_id) do
-    GenServer.start_link(__MODULE__, %{}, name: deck_id)
+  def start_link do
+    GenServer.start_link(__MODULE__, %{})
   end
 
   @moduledoc """
